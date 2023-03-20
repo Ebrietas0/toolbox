@@ -690,6 +690,33 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
     [provider, createLog, isEthereumChainIdReady]
   );
 
+  const handleSignResultingBlowfishWarning = useCallback(
+    async ({ chainId }) => {
+      // set ethereum provider to the correct chainId
+      const ready = await isEthereumChainIdReady(chainId);
+      if (!ready) return;
+      const { ethereum } = provider;
+      try {
+        const signedMessage = await signEIP2612Message(ethereum);
+        createLog({
+          providerType: 'ethereum',
+          status: 'success',
+          method: 'eth_signTypedData',
+          message: `EIP2612 Message signed: ${signedMessage}`,
+        });
+        return signedMessage;
+      } catch (error) {
+        createLog({
+          providerType: 'ethereum',
+          status: 'error',
+          method: 'eth_signTypedData',
+          message: error.message,
+        });
+      }
+    },
+    [provider, createLog, isEthereumChainIdReady]
+  );
+
   /**
    * Disconnect from Solana
    * At this time, there is no way to programmatically disconnect from Ethereum
@@ -820,6 +847,12 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
           {
             name: 'EIP2612',
             onClick: handleSignEIP2612Message,
+          },
+        ],
+        [
+          {
+            name: 'Sign Typed (Blowfish warning)',
+            onClick: handleSignResultingBlowfishWarning,
           },
         ],
       ];

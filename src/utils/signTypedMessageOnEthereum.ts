@@ -199,4 +199,69 @@ export const signEIP2612Message = async (provider: PhantomEthereumProvider) => {
   });
 };
 
+export const signTypedMessageResultingInBlowfishWarning = async (provider: PhantomEthereumProvider) => {
+  const selectedAddress = await getEthereumSelectedAddress(provider);
+
+  return signTypedMessageV4(selectedAddress, provider, {
+    domain: {
+      name: 'Permit2',
+      chainId: '1',
+      verifyingContract: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+    },
+    types: {
+      PermitWitnessTransferFrom: [
+        {
+          name: 'permitted',
+          type: 'TokenPermissions',
+        },
+        {
+          name: 'spender',
+          type: 'address',
+        },
+        {
+          name: 'nonce',
+          type: 'uint256',
+        },
+        {
+          name: 'deadline',
+          type: 'uint256',
+        },
+        {
+          name: 'witness',
+          type: 'MockWitness',
+        },
+      ],
+      TokenPermissions: [
+        {
+          name: 'token',
+          type: 'address',
+        },
+        {
+          name: 'amount',
+          type: 'uint256',
+        },
+      ],
+      MockWitness: [
+        {
+          name: 'mock',
+          type: 'uint256',
+        },
+      ],
+    },
+    primaryType: 'PermitWitnessTransferFrom',
+    message: {
+      permitted: {
+        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+        amount: '13675000000',
+      },
+      spender: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
+      nonce: '0',
+      deadline: '281474976710655',
+      witness: {
+        mock: '0x0000000000000000000000000000000000000000000000000000000000000000',
+      },
+    },
+  });
+};
+
 export default signTypedMessageOnEthereum;
