@@ -147,7 +147,7 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
     await connect({ solana, ethereum }, createLog);
 
     // Immediately switch to Ethereum Goerli for Sandbox purposes
-    await ensureEthereumChain(ethereum, SupportedEVMChainIds.EthereumGoerli, createLog);
+    await ensureEthereumChain(ethereum, SupportedEVMChainIds.EthereumMainnet, createLog);
   }, [provider, createLog]);
 
   /** SignAndSendTransaction via Solana Provider */
