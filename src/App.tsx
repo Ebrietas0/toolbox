@@ -826,6 +826,18 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
     }
 
     return {
+      [SupportedEVMChainIds.EthereumMainnet]: {
+        icon: SupportedChainIcons.Ethereum,
+        name: SupportedChainNames.EthereumMainnet,
+        methods: createEvmMethods({
+          // sushi ethereum mainnet
+          erc20Address: '0x1a63bbb6e16f7fc7d34817496985757cd550c2c0',
+          // Azuki goerli test (https://opensea.io/collection/azuki)
+          erc721Address: '0xed5af388653567af2f388e6224dc7c4b3241c544',
+          // Skin Vial (https://opensea.io/collection/skinvial-evox)
+          erc1155Address: '0x9a06ef3a841316a9e2c1c93b9c21a7342abe484f',
+        }),
+      },
       [SupportedEVMChainIds.EthereumGoerli]: {
         icon: SupportedChainIcons.Ethereum,
         name: SupportedChainNames.EthereumGoerli,
