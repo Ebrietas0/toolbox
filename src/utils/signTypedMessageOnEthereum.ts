@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import { PhantomEthereumProvider } from '../types';
 import { getEthereumSelectedAddress } from './getEthereumSelectedAddress';
 
-const defaultMsgParams = {
+const defaultMsgParams = () => ({
   types: {
     EIP712Domain: [
       { name: 'name', type: 'string' },
@@ -38,7 +38,7 @@ const defaultMsgParams = {
     },
     contents: 'Hello, Bob!',
   },
-};
+});
 
 /**
  * Signs a message on Ethereum
@@ -49,7 +49,7 @@ const defaultMsgParams = {
 const signTypedMessageOnEthereum = async (
   provider: PhantomEthereumProvider,
   version: 'v1' | 'v3' | 'v4' | 'ethers',
-  msgParams: object = defaultMsgParams
+  msgParams: object = defaultMsgParams()
 ): Promise<string> => {
   try {
     const selectedAddress = await getEthereumSelectedAddress(provider);
