@@ -914,9 +914,9 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
           },
         ],
       },
-      [SupportedEVMChainIds.PolygonMainnet]: {
-        icon: SupportedChainIcons.Polygon,
-        name: SupportedChainNames.PolygonMainnet,
+      [SupportedEVMChainIds.BnbMainnet]: {
+        icon: SupportedChainIcons.Bnb,
+        name: SupportedChainNames.BnbMainnet,
         methods: createEvmMethods({
           erc20Address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC
           erc721Address: '0xe09d7962886a06d305f7122ea08ca184f535575a',

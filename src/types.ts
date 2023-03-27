@@ -108,10 +108,13 @@ export enum SupportedChainNames {
   SolanaMainnet = 'Solana Mainnet Beta',
   SolanaTestnet = 'Solana Testnet',
   SolanaDevnet = 'Solana Devnet',
+  BnbMainnet = 'BNB Chain Mainnet',
+  BnbTestnet = 'BNB Chain Testnet',
 }
 
 export enum SupportedChainIcons {
   Ethereum = '/images/ethereum.png',
   Polygon = '/images/polygon.png',
   Solana = '/images/solana.png',
+  Bnb = '/images/bnb.png',
 }
