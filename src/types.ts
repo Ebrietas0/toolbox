@@ -90,6 +90,8 @@ export enum SupportedEVMChainIds {
   EthereumGoerli = '0x5',
   PolygonMainnet = '0x89',
   PolygonMumbai = '0x13881',
+  BnbMainnet = '0x38', // 56
+  BnbTestnet = '0x61', // 97
 }
 
 export enum SupportedSolanaChainIds {
