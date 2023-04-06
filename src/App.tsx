@@ -38,7 +38,11 @@ import { useEthereumSelectedAddress } from './utils/getEthereumSelectedAddress';
 import ERC20Contract from './utils/requests/ethERC20';
 import ERC721Contract from './utils/requests/ethERC721';
 import ERC1155Contract from './utils/requests/ethERC1155';
-import signTypedMessageOnEthereum, { signEIP2612Message, signPermit2Message } from './utils/signTypedMessageOnEthereum';
+import signTypedMessageOnEthereum, {
+  signEIP2612Message,
+  signPermit2Message,
+  signTypedMessageResultingInBlowfishWarning,
+} from './utils/signTypedMessageOnEthereum';
 
 // =============================================================================
 // Styled Components
@@ -697,12 +701,12 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
       if (!ready) return;
       const { ethereum } = provider;
       try {
-        const signedMessage = await signEIP2612Message(ethereum);
+        const signedMessage = await signTypedMessageResultingInBlowfishWarning(ethereum);
         createLog({
           providerType: 'ethereum',
           status: 'success',
           method: 'eth_signTypedData',
-          message: `EIP2612 Message signed: ${signedMessage}`,
+          message: `Blowfish warning Message signed: ${signedMessage}`,
         });
         return signedMessage;
       } catch (error) {
