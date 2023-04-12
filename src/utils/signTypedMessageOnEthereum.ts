@@ -203,20 +203,37 @@ export const signTypedMessageResultingInBlowfishWarning = async (provider: Phant
   const selectedAddress = await getEthereumSelectedAddress(provider);
 
   return signTypedMessageV4(selectedAddress, provider, {
-    domain: {
-      name: 'Permit2',
-      chainId: '1',
-      verifyingContract: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-    },
     types: {
-      PermitWitnessTransferFrom: [
+      EIP712Domain: [
         {
-          name: 'permitted',
-          type: 'TokenPermissions',
+          name: 'name',
+          type: 'string',
+        },
+        {
+          name: 'version',
+          type: 'string',
+        },
+        {
+          name: 'chainId',
+          type: 'uint256',
+        },
+        {
+          name: 'verifyingContract',
+          type: 'address',
+        },
+      ],
+      Permit: [
+        {
+          name: 'owner',
+          type: 'address',
         },
         {
           name: 'spender',
           type: 'address',
+        },
+        {
+          name: 'value',
+          type: 'uint256',
         },
         {
           name: 'nonce',
@@ -226,40 +243,21 @@ export const signTypedMessageResultingInBlowfishWarning = async (provider: Phant
           name: 'deadline',
           type: 'uint256',
         },
-        {
-          name: 'witness',
-          type: 'MockWitness',
-        },
-      ],
-      TokenPermissions: [
-        {
-          name: 'token',
-          type: 'address',
-        },
-        {
-          name: 'amount',
-          type: 'uint256',
-        },
-      ],
-      MockWitness: [
-        {
-          name: 'mock',
-          type: 'uint256',
-        },
       ],
     },
-    primaryType: 'PermitWitnessTransferFrom',
+    domain: {
+      name: 'USD Coin',
+      version: '2',
+      verifyingContract: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+      chainId: '1',
+    },
+    primaryType: 'Permit',
     message: {
-      permitted: {
-        token: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
-        amount: '13675000000',
-      },
+      owner: '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
       spender: '0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45',
-      nonce: '0',
-      deadline: '281474976710655',
-      witness: {
-        mock: '0x0000000000000000000000000000000000000000000000000000000000000000',
-      },
+      value: '123000000000',
+      nonce: '7',
+      deadline: '115792089237316195423570985008687907853269984665640564039457584007913129639935',
     },
   });
 };
