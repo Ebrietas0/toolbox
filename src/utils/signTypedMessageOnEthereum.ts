@@ -199,6 +199,7 @@ export const signEIP2612Message = async (provider: PhantomEthereumProvider) => {
   });
 };
 
+// https://docs.blowfish.xyz/reference/scan-message-evm
 export const signTypedMessageResultingInBlowfishWarning = async (provider: PhantomEthereumProvider) => {
   const selectedAddress = await getEthereumSelectedAddress(provider);
 
