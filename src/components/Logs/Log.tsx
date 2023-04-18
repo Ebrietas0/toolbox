@@ -52,16 +52,16 @@ const Message = styled.p`
 // =============================================================================
 
 const Log = React.memo((props: TLog) => (
-  <Column>
+  <Column className="log">
     <Row>
-      <StyledSpan status={props.status}>
+      <StyledSpan status={props.status} className="log-status">
         {'>'} {props.status}
       </StyledSpan>
-      {props.providerType && <Method>{props.providerType}</Method>}
-      {props.method && <Method>[{props.method}]</Method>}
+      {props.providerType && <Method className="log-provider_type">{props.providerType}</Method>}
+      {props.method && <Method className="log-method">[{props.method}]</Method>}
     </Row>
-    <Message>{props.message}</Message>
-    {props.messageTwo && <Message>{props.messageTwo}</Message>}
+    <Message className="log-message">{props.message}</Message>
+    {props.messageTwo && <Message className="log-message-two">{props.messageTwo}</Message>}
   </Column>
 ));
 
