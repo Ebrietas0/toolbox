@@ -83,7 +83,9 @@ const Logs = React.memo((props: Props) => {
               <Log key={`${log.status}-${log.method}-${i}`} {...log} />
             ))}
           </LogsContainer>
-          <ClearLogsButton onClick={clearLogs}>Clear Logs</ClearLogsButton>
+          <ClearLogsButton onClick={clearLogs} data-testid="clear-logs">
+            Clear Logs
+          </ClearLogsButton>
         </>
       ) : (
         <Row>
