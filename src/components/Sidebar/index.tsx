@@ -289,6 +289,7 @@ const Sidebar = React.memo((props: Props) => {
             <Select
               data-testid="chain_switcher-select"
               defaultValue={dropdownOptions[0]}
+              classNamePrefix='phantom-account-select'
               chakraStyles={{
                 container: (provided, state) => ({
                   ...provided,
