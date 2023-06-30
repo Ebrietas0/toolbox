@@ -899,6 +899,18 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
           erc1155Address: '0x5c76677fea2bf5dd37e4f1460968a23a537e3ee3',
         }),
       },
+      [SupportedEVMChainIds.PolygonMumbai]: {
+        icon: SupportedChainIcons.Polygon,
+        name: SupportedChainNames.PolygonMumbai,
+        methods: createEvmMethods({
+          // wmatic polygon mumbai
+          erc20Address: '0x20c9560d42566d6ead1da3dc84137e84838fa696',
+          // https://testnets.opensea.io/assets/mumbai/0xfa44ceb4659cb53ed45d5dde4ef4ff23b3ac2e2a
+          erc721Address: '0xfa44ceb4659cb53ed45d5dde4ef4ff23b3ac2e2a',
+          // https://testnets.opensea.io/collection/lensprotocol
+          erc1155Address: '0xf4910C763eD4e47A585E2D34baA9A4b611aE448C',
+        }),
+      },
       [SupportedSolanaChainIds.SolanaMainnet]: {
         icon: SupportedChainIcons.Solana,
         name: SupportedChainNames.SolanaMainnet,
