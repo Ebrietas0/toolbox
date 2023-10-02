@@ -28,7 +28,7 @@ import {
   SupportedSolanaChainIds,
   TLog,
 } from './types';
-
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Logs, NoProvider, Sidebar } from './components';
 import { connect, silentlyConnect } from './utils/connect';
 import { setupEvents } from './utils/setupEvents';
@@ -43,6 +43,8 @@ import signTypedMessageOnEthereum, {
   signPermit2Message,
   signTypedMessageResultingInBlowfishWarning,
 } from './utils/signTypedMessageOnEthereum';
+import { TestIframePage } from './components/pages/TestIframePage';
+import { TestIframeDisplayPage } from './components/pages/TestIframeDisplayPage';
 
 // =============================================================================
 // Styled Components
@@ -1000,12 +1002,16 @@ const App = () => {
     };
     getPhantomMultiChainProvider();
   }, []);
-
-  if (!provider) {
-    return <NoProvider />;
-  }
-
-  return <StatelessApp {...props} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/iframe" element={<TestIframeDisplayPage />} />
+        <Route path="/e2e/iframe" element={<TestIframePage />} />
+        <Route path="/" element={!provider ? <NoProvider /> : <StatelessApp {...props} />} />{' '}
+        {/* 👈 Renders at /app/ */}
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
